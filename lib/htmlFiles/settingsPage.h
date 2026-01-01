@@ -110,6 +110,11 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
               </div>
               <hr>
               <div>
+                    <h6 class="my-2">WOPR Mode</h6>
+                    <small class="text-muted">WarGames-inspired random blinking effect. Creates dynamic, computing-style patterns similar to the WOPR computer from the 1983 film. Adjustable speed controls how fast patterns change (50-1000ms, default 100ms).</small>
+              </div>
+              <hr>
+              <div>
                     <h6 class="my-2">Wall clock</h6>
                     <small class="text-muted">Clock mode. It has the following display options:
                         <br><b>HH:MM</b> - Hours : Minutes [21:43]
@@ -148,6 +153,7 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                             <li>owmWeather</li>
                             <li>haClient</li>
                             <li>intTempSensor</li>
+                            <li>wopr</li>
                         </ul>
                       <li><b>devicePrefix/zone<i>N</i>/scrolleffectIn</b> - scroll effect <b>IN</b></li>
                       <li><b>devicePrefix/zone<i>N</i>/scrolleffectOut</b> - scroll effect <b>Out</b></li><br>
@@ -225,7 +231,6 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <!-- <option value="4">4</option> -->
                       </select>
                     <div class="invalid-feedback">
                       Valid first name is required.
@@ -259,15 +264,7 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                     <input type="text" class="form-control" id="zone2End" value="%zone2End%" >
                   </div>
                   <div class="col-sm-4"></div>
-<!--                  <div class="col-sm-4" id="zone3BeginDiv">
-                    <label for="zone3Begin" class="form-label">First module <span class="text-muted">[ zone 3 ]</span></label>
-                    <input type="text" class="form-control" id="zone3Begin" value="%zone3Begin%" >
-                  </div>
-                  <div class="col-sm-4" id="zone3EndDiv">
-                    <label for="zone3End" class="form-label">Last module <span class="text-muted">[ zone 3 ]</span></label>
-                    <input type="text" class="form-control" id="zone3End" value="%zone3End%" >
-                  </div>
--->                
+                
                   <button id="displaySettings" class="w-100 btn btn-primary btn-lg" onClick="preparePostRequest(event, this.id, null);">Apply and reboot</button>
                   
                   <hr class="my-4">
@@ -293,6 +290,7 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                         <option value="owmWeather">Open Weather map</option>
                         <option value="haClient">Home Assistant client</option>
                         <option value="intTempSensor">Internal Temperature sensor (ds18b20)</option>
+                        <option value="wopr">WOPR Mode</option>
                     </select>
                   </div>
                   
@@ -342,6 +340,14 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                   <div class="col-7" id="ds18b20PostfixZone0Div" style="display: none;">
                     <label for="ds18b20PostfixZone0" class="form-label">Postfix</label>
                         <input type="text" class="form-control" id="ds18b20PostfixZone0" value="%ds18b20PostfixZone0%">
+                  </div>
+                  <div class="col-7" id="woprUpdateIntervalZone0Div" style="display: none;">
+                    <label for="woprUpdateIntervalZone0" class="form-label">WOPR Update Speed</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="woprUpdateIntervalZone0" value="%woprUpdateInterval0%">
+                        <span class="input-group-text">ms</span>
+                    </div>
+                    <small class="form-text text-muted">Lower = faster (50-1000ms recommended, default 100ms)</small>
                   </div>
 
                   <div class="col-5" id="fontZone0div">

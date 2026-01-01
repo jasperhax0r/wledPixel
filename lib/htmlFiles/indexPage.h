@@ -130,14 +130,7 @@ const char indexPage[] PROGMEM = R"=====(<!doctype html>
                   <div class="col-2 align-self-end">
                     <button id="postZone2Text" class="w-100 btn btn-primary btn-lg" onClick="preparePostRequest(event, this.id, null);">Send</button>
                   </div>
-<!--                  <div class="col-10">
-                    <label for="messageZone3" class="form-label">Zone3 text</label>
-                    <input id="messageZone3" class="form-control form-control-lg" type="text" placeholder="Zone3 message">
-                  </div>                  
-                  <div class="col-2 align-self-end">
-                    <button id="postZone3Text" class="w-100 btn btn-primary btn-lg" onClick="preparePostRequest(event, this.id, null);">Send</button>
-                  </div>
--->                
+                
                 <div class="col-sm-12"></div>
                 <hr class="my-4">
                 <div class="col-sm-12 text-center">
@@ -233,6 +226,7 @@ const char indexPage[] PROGMEM = R"=====(<!doctype html>
     const workModeZone1 = "%workModeZone1%"
     const workModeZone2 = "%workModeZone2%"
     const workModeZone3 = "%workModeZone3%"
+    
     if (workModeZone1 != "manualInput") {
         document.getElementById('messageZone1').disabled = true;
         document.getElementById('postZone1Text').disabled = true;
