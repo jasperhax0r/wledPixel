@@ -4,7 +4,7 @@ ESP32 or ESP8266 and MAX7219 dot matrix display management
 ![img](https://raw.githubusercontent.com/widapro/wled-pixel-v2/master/img/main.jpg)
 ![img](https://raw.githubusercontent.com/widapro/wled-pixel-v2/master/img/wledPixel-white.jpg)
 
-[The latest firmware version can be found in Releases](https://github.com/widapro/wled-pixel-v2/releases)
+[The latest firmware version can be found in Releases](https://github.com/jasperhax0r/wledPixel/releases)
 
 ## Supported key features:
 1. **Home Assistant client** [display sensor values]
@@ -12,15 +12,16 @@ ESP32 or ESP8266 and MAX7219 dot matrix display management
 3. **MQTT client** [each display zone support own topic]
 4. Display controll through MQTT
 5. **Wall NTP clock** [NTP sync clock]
-6. **Manual input**
-7. Full controll through **web UI**
-8. Home Assistant MQTT discovery [When MQTT settings specified, device will be automatically send discovery message to HA]
-9. Control display as light in Home Assistant [MQTT setup required]
-10. Initial setup through wifi AP and web UI
-11. Support 3 independent display zones
-12. Support up to 12 display segments at the same time [configured in web UI]
-13. Included 3 different fonts
-14. Plus symbols font
+6. **WOPR Blinking Lights**
+7. **Manual input**
+8. Full controll through **web UI**
+9. Home Assistant MQTT discovery [When MQTT settings specified, device will be automatically send discovery message to HA]
+10. Control display as light in Home Assistant [MQTT setup required]
+11. Initial setup through wifi AP and web UI
+12. Support 3 independent display zones
+13. Support up to 12 display segments at the same time [configured in web UI]
+14. Included 3 different fonts
+15. Plus symbols font
 
 ##### Ingredients:
 1. Dot matrix display MAX7219, something like this: https://aliexpress.com/item/32618155357.html
@@ -127,6 +128,7 @@ workMode supported values:
 * `wallClock`     - NTP sync clock
 * `owmWeather`    - Open Weather Map client
 * `haClient`      - Home Assistant client
+* `wopr`          - WOPR Blinking Lights Mode
 
 
 ## Wall clock
