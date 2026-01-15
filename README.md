@@ -34,6 +34,7 @@ ESP32 or ESP8266 and MAX7219 dot matrix display management
 
 ##### Firmware compiled with next parameters:
 **ESP32**
+NOTE: I had problems with some ESP32 modules and couldnt get them to consistantly work or boot at all.
 ```
 // Display pinout
 #define DATA_PIN  23         // ESP32 GPIO23
@@ -57,6 +58,10 @@ const int oneWireBus = D4;   // WeMos D1 mini or ESP8266 -> GPIO02
 
 ## Wiring
 ![img](https://github.com/widapro/wledPixel/blob/9ea4164575de9fc7c5ffbd9eb50f75493889256c/img/WledPixel%20Wiring800.png)
+
+Note: when I was removing the pins so that i could solder the modules together I ran into constant problems with the pads ripping off the matrix modules. most of the time the fix was easy as the 5v, ground, CS and CLK pins are all wired in parallel. however for the DIN that required soldering a jumper wire from the DIN pin on the header to one of the pins on the MAX7219 chip. not too hard but just wanted to note this,
+
+Also as a work in progress I have made a full 12 module single board in KiCad for a more simpler install.
 
 
 ## First boot:
