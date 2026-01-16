@@ -1,0 +1,7 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+"C1, C11, C13, C15, C17, C19, C21, C23, C3, C5, C7, C9",C_Disc_D3.8mm_W2.6mm_P2.50mm,12,0.1uF,
+"C10, C12, C14, C16, C18, C2, C20, C22, C24, C4, C6, C8",C_Disc_D3.8mm_W2.6mm_P2.50mm,12,10uF/25V,
+"DS1, DS10, DS11, DS12, DS2, DS3, DS4, DS5, DS6, DS7, DS8, DS9",DISPLAY_TA08-81GWA,12,TA08-81GWA,
+J1,PinHeader_1x05_P2.54mm_Horizontal,1,Conn_01x05_Pin,
+"R1, R10, R11, R12, R2, R3, R4, R5, R6, R7, R8, R9",R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal,12,10K,
+"U1, U10, U11, U12, U2, U3, U4, U5, U6, U7, U8, U9",DIP-24_W7.62mm,12,MAX7219,
