@@ -63,7 +63,7 @@ WiFiClient mqttEspClient;
 #endif
 
 /// GLOBAL ///
-const char* firmwareVer = "2.8.0";
+const char* firmwareVer = "2.8.1";
 int nLoop = 0;
 bool restartESP         = false;
 bool allTestsFinish     = false;
@@ -1096,7 +1096,7 @@ void updateWOPREffect(uint8_t zone) {
       if (random(0, 100) < 30) {  // 30% chance to update this column
         for (int row = 0; row < 8; row++) {
           // Create random patterns
-          int pattern = random(0, 5);
+          int pattern = random(0, 4);
           bool state = false;
           
           switch(pattern) {
@@ -1138,10 +1138,10 @@ void updateWOPREffect(uint8_t zone) {
     }
     
     // Random intensity changes for that "computing" feel
-    if (random(0, 100) < 10) {
-      uint8_t newIntensity = random(3, 16);
-      P.setIntensity(zone, newIntensity);
-    }
+    // if (random(0, 100) < 10) {
+    //  uint8_t newIntensity = random(3, 16);
+    //  P.setIntensity(zone, newIntensity);
+    // }
   }
 }
 
