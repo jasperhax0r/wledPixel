@@ -61,7 +61,7 @@ const int oneWireBus = D4;   // WeMos D1 mini or ESP8266 -> GPIO02
 
 Note: when I was removing the pins so that i could solder the modules together I ran into constant problems with the pads ripping off the matrix modules. most of the time the fix was easy as the 5v, ground, CS and CLK pins are all wired in parallel. however for the DIN that required soldering a jumper wire from the DIN pin on the header to one of the pins on the MAX7219 chip. not too hard but just wanted to note this,
 
-Also as a work in progress I have made a full 12 module single board in KiCad for a more simpler install.
+Also as a work in progress I have made a full [12 module single board](https://github.com/jasperhax0r/wledPixel/FullSizePCB/) in KiCad for a more simpler install. However currently it is cost prohibitive in low quantities.
 
 
 ## First boot:
