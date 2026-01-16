@@ -1202,6 +1202,23 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                   </div>
                 <button id="applyDs18b20Settings" class="w-100 btn btn-primary btn-lg" onClick="preparePostRequest(event, this.id, null);">Apply</button>
 
+                <hr class="my-4">
+                  <h3 class="mb-4 text-danger">⚠️ Danger Zone</h3>
+                  <div class="alert alert-danger" role="alert">
+                    <h5 class="alert-heading">Factory Reset</h5>
+                    <p>This will erase <strong>ALL settings</strong> including WiFi credentials, zone configurations, and MQTT settings. The device will restart in Access Point mode for initial setup.</p>
+                    <hr>
+                    <p class="mb-0"><strong>This action cannot be undone!</strong></p>
+                  </div>
+                  
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="confirmReset">
+                    <label class="form-check-label text-danger" for="confirmReset">
+                      <strong>I understand this will erase all settings and WiFi credentials</strong>
+                    </label>
+                  </div>
+                  
+                <button id="factoryResetButton" class="w-100 btn btn-danger btn-lg" disabled onClick="performFactoryReset(event);">Factory Reset Device</button>
 
 
                 <div class="col-sm-12"></div>
@@ -1896,6 +1913,41 @@ workModeZone0.addEventListener('change', function (e) {
         request.fail(function( jqXHR, textStatus, responseText ) {
             alert( "Request failed: " + responseText );
             toastDanger.show();
+        });
+    }
+        // Factory Reset confirmation checkbox
+    document.getElementById('confirmReset').addEventListener('change', function(e) {
+        document.getElementById('factoryResetButton').disabled = !e.target.checked;
+    });
+
+    function performFactoryReset(event) {
+        event.preventDefault();
+        
+        if (!document.getElementById('confirmReset').checked) {
+            alert('Please confirm by checking the checkbox');
+            return;
+        }
+        
+        if (!confirm('⚠️ FINAL WARNING ⚠️\n\nThis will erase ALL settings and WiFi credentials!\n\nThe device will restart in Access Point mode.\n\nAre you absolutely sure?')) {
+            return;
+        }
+        
+        var toastSuccess = new bootstrap.Toast(document.getElementById('liveToastSuccess'));
+        
+        var request = $.ajax({
+            url: "/api/factory-reset",
+            method: "POST",
+            cache: false,
+            dataType: "json"
+        });
+        
+        request.done(function(msg) {
+            alert('Factory reset initiated!\n\nThe device is restarting...\n\nLook for WiFi network: ' + '%mqttDevicePrefix%' + '\nPassword: 12345678');
+            toastSuccess.show();
+        });
+        
+        request.fail(function(jqXHR, textStatus, responseText) {
+            alert('Reset request sent. Device should be restarting...');
         });
     }
 </script>
