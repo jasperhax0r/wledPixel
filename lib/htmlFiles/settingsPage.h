@@ -475,6 +475,7 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                         <option value="owmWeather">Open Weather map</option>
                         <option value="haClient">Home Assistant client</option>
                         <option value="intTempSensor">Internal Temperature sensor (ds18b20)</option>
+                        <option value="wopr">WOPR Mode</option>
                     </select>
                   </div>
                   
@@ -525,7 +526,14 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                     <label for="ds18b20PostfixZone1" class="form-label">Postfix</label>
                         <input type="text" class="form-control" id="ds18b20PostfixZone1" value="%ds18b20PostfixZone1%">
                   </div>
-
+                  <div class="col-7" id="woprUpdateIntervalZone0Div" style="display: none;">
+                    <label for="woprUpdateIntervalZone1" class="form-label">WOPR Update Speed</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="woprUpdateIntervalZone1" value="%woprUpdateInterval1%">
+                        <span class="input-group-text">ms</span>
+                    </div>
+                    <small class="form-text text-muted">Lower = faster (50-1000ms recommended, default 100ms)</small>
+                  </div>
                   <div class="col-5" id="fontZone1div">
                     <label for="fontZone1" class="form-label">Font</label>
                     <select id="fontZone1" class="form-select">
@@ -652,6 +660,7 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                         <option value="owmWeather">Open Weather map</option>
                         <option value="haClient">Home Assistant client</option>
                         <option value="intTempSensor">Internal Temperature sensor (ds18b20)</option>
+                        <option value="wopr">WOPR Mode</option>
                     </select>
                   </div>
                   
@@ -702,7 +711,14 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                     <label for="ds18b20PostfixZone2" class="form-label">Postfix</label>
                         <input type="text" class="form-control" id="ds18b20PostfixZone2" value="%ds18b20PostfixZone2%">
                   </div>
-
+                  <div class="col-7" id="woprUpdateIntervalZone2Div" style="display: none;">
+                    <label for="woprUpdateIntervalZone2" class="form-label">WOPR Update Speed</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="woprUpdateIntervalZone2" value="%woprUpdateInterval2%">
+                        <span class="input-group-text">ms</span>
+                    </div>
+                    <small class="form-text text-muted">Lower = faster (50-1000ms recommended, default 100ms)</small>
+                  </div>
                   <div class="col-5" id="fontZone2div">
                     <label for="fontZone2" class="form-label">Font</label>
                     <select id="fontZone2" class="form-select">
@@ -827,6 +843,7 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                         <option value="owmWeather">Open Weather map</option>
                         <option value="haClient">Home Assistant client</option>
                         <option value="intTempSensor">Internal Temperature sensor (ds18b20)</option>
+                        <option value="wopr">WOPR Mode</option>
                     </select>
                   </div>
                   
@@ -877,7 +894,14 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                     <label for="ds18b20PostfixZone3" class="form-label">Postfix</label>
                         <input type="text" class="form-control" id="ds18b20PostfixZone3" value="%ds18b20PostfixZone3%">
                   </div>
-
+                  <div class="col-7" id="woprUpdateIntervalZone3Div" style="display: none;">
+                    <label for="woprUpdateIntervalZone3" class="form-label">WOPR Update Speed</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="woprUpdateIntervalZone3" value="%woprUpdateInterval3%">
+                        <span class="input-group-text">ms</span>
+                    </div>
+                    <small class="form-text text-muted">Lower = faster (50-1000ms recommended, default 100ms)</small>
+                  </div>
                   <div class="col-5" id="fontZone3div">
                     <label for="fontZone3" class="form-label">Font</label>
                     <select id="fontZone3" class="form-select">
