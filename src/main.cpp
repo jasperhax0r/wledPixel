@@ -63,7 +63,7 @@ WiFiClient mqttEspClient;
 #endif
 
 /// GLOBAL ///
-const char* firmwareVer = "2.8.1";
+const char* firmwareVer = "2.8.2";
 int nLoop = 0;
 bool restartESP         = false;
 bool allTestsFinish     = false;
@@ -1144,7 +1144,76 @@ void updateWOPREffect(uint8_t zone) {
     // }
   }
 }
-
+void factoryReset() {
+  Serial.println(F("\n=== FACTORY RESET INITIATED ==="));
+  
+  // Show message on display first
+  P.displayClear();
+  P.setIntensity(7);
+  P.displayText("RESET", PA_CENTER, 0, 0, PA_PRINT, PA_PRINT);
+  delay(2000);
+  
+  // Clear all preferences
+  preferences.begin("systemSettings", false);
+  preferences.clear();
+  preferences.end();
+  
+  preferences.begin("displaySettings", false);
+  preferences.clear();
+  preferences.end();
+  
+  for (uint8_t n = 0; n < 3; n++) {
+    preferences.begin("zoneSettings", false);
+    preferences.clear();
+    preferences.end();
+  }
+  
+  preferences.begin("mqttSettings", false);
+  preferences.clear();
+  preferences.end();
+  
+  preferences.begin("wallClockSett", false);
+  preferences.clear();
+  preferences.end();
+  
+  preferences.begin("owmSettings", false);
+  preferences.clear();
+  preferences.end();
+  
+  preferences.begin("haSettings", false);
+  preferences.clear();
+  preferences.end();
+  
+  preferences.begin("ds18b20Settings", false);
+  preferences.clear();
+  preferences.end();
+  
+  preferences.begin("intensity", false);
+  preferences.clear();
+  preferences.end();
+  
+  Serial.println(F("All settings cleared."));
+  
+  // Clear WiFi credentials - more thorough method
+  WiFi.mode(WIFI_AP_STA);
+  WiFi.persistent(true);
+  WiFi.disconnect(true, true);  // disconnect and erase
+  WiFi.persistent(false);
+  delay(1000);
+  
+  // Completely reset WiFi
+  WiFi.mode(WIFI_OFF);
+  delay(1000);
+  
+  Serial.println(F("WiFi credentials erased."));
+  Serial.println(F("Device will restart in AP mode..."));
+  
+  P.displayText("REBOOT", PA_CENTER, 0, 0, PA_PRINT, PA_PRINT);
+  delay(2000);
+  
+  // Restart
+  ESP.restart();
+}
 
 void setup() {
   Serial.begin(115200);
@@ -1465,7 +1534,19 @@ void setup() {
         //readConfig(key->value(), n);
       }
       
-  });
+  }
+);
+  server.on("/api/factory-reset", HTTP_POST, [](AsyncWebServerRequest *request){
+  Serial.println(F("\nFactory reset requested via web interface"));
+  request->send(200, "application/json", "{\"status\":\"resetting\"}");
+  
+  // Delay to allow response to be sent
+  delay(500);
+  
+  // Perform factory reset
+  factoryReset();
+  }
+);
 
   // Start webserver
   server.begin();
