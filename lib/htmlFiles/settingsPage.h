@@ -1066,12 +1066,43 @@ const char settingsPage[] PROGMEM = R"=====(<!doctype html>
                         <input type="text" class="form-control" id="ntpServer" value="%ntpServer%">
                     </div>
                   </div>
-                  <div class="col-3">
-                    <label for="timeZone" class="form-label">Time zone</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">UTC</span>
-                        <input type="text" class="form-control" id="ntpTimeZone" value="%ntpTimeZone%">
-                    </div>
+                  <div class="col-6">
+                  <label for="ntpTimeZone" class="form-label">Time zone</label>
+                  <select id="ntpTimeZone" class="form-select">
+                    <option value="-12">(UTC-12:00) International Date Line West</option>
+                    <option value="-11">(UTC-11:00) Coordinated Universal Time-11</option>
+                    <option value="-10">(UTC-10:00) Hawaii</option>
+                    <option value="-9">(UTC-09:00) Alaska</option>
+                    <option value="-8">(UTC-08:00) Pacific Time (US & Canada)</option>
+                    <option value="-7">(UTC-07:00) Mountain Time (US & Canada)</option>
+                    <option value="-6">(UTC-06:00) Central Time (US & Canada)</option>
+                    <option value="-5">(UTC-05:00) Eastern Time (US & Canada)</option>
+                    <option value="-4">(UTC-04:00) Atlantic Time (Canada)</option>
+                    <option value="-3.5">(UTC-03:30) Newfoundland</option>
+                    <option value="-3">(UTC-03:00) Buenos Aires, Georgetown</option>
+                    <option value="-2">(UTC-02:00) Mid-Atlantic</option>
+                    <option value="-1">(UTC-01:00) Azores</option>
+                    <option value="0">(UTC+00:00) London, Dublin, Lisbon</option>
+                    <option value="1">(UTC+01:00) Paris, Berlin, Rome</option>
+                    <option value="2">(UTC+02:00) Athens, Istanbul, Cairo</option>
+                    <option value="3">(UTC+03:00) Moscow, Baghdad, Kuwait</option>
+                    <option value="3.5">(UTC+03:30) Tehran</option>
+                    <option value="4">(UTC+04:00) Abu Dhabi, Muscat</option>
+                    <option value="4.5">(UTC+04:30) Kabul</option>
+                    <option value="5">(UTC+05:00) Islamabad, Karachi</option>
+                    <option value="5.5">(UTC+05:30) Mumbai, Kolkata, New Delhi</option>
+                    <option value="5.75">(UTC+05:45) Kathmandu</option>
+                    <option value="6">(UTC+06:00) Almaty, Dhaka</option>
+                    <option value="6.5">(UTC+06:30) Yangon (Rangoon)</option>
+                    <option value="7">(UTC+07:00) Bangkok, Jakarta</option>
+                    <option value="8">(UTC+08:00) Beijing, Hong Kong, Singapore</option>
+                    <option value="9">(UTC+09:00) Tokyo, Seoul</option>
+                    <option value="9.5">(UTC+09:30) Adelaide</option>
+                    <option value="10">(UTC+10:00) Sydney, Melbourne, Brisbane</option>
+                    <option value="11">(UTC+11:00) Solomon Islands</option>
+                    <option value="12">(UTC+12:00) Auckland, Fiji</option>
+                    <option value="13">(UTC+13:00) Nuku'alofa</option>
+                  </select>
                   </div>
                   <div class="col-3">
                     <label for="timeZone" class="form-label">Update interval</label>
