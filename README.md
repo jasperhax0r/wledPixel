@@ -1,6 +1,11 @@
 # wledPixel
 ESP32 or ESP8266 and MAX7219 dot matrix display management
 
+## Notes
+1. Currently it does take some time for the initial setup to become ready, usually under a minute before you can connect to its SSID
+2. After resetting to factory defaults you may have to powercycle.
+3. WOPR mode doesnt really have any current settings, only thing that can be configured is what workzone its in and brightness.
+
 ![img](https://github.com/jasperhax0r/wledPixel/blob/main/img/main.jpg)
 ![img](https://github.com/jasperhax0r/wledPixel/blob/main/img/wledPixel-white.jpg)
 
