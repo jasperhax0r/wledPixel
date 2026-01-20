@@ -63,7 +63,7 @@ WiFiClient mqttEspClient;
 #endif
 
 /// GLOBAL ///
-const char* firmwareVer = "2.8.2";
+const char* firmwareVer = "2.8.3";
 int nLoop = 0;
 bool restartESP         = false;
 bool allTestsFinish     = false;
@@ -165,7 +165,7 @@ char zone2Message[100] = "zone2";
 
 // Initialize NTP
 String ntpServer = "us.pool.ntp.org";
-int8_t ntpTimeZone = 3;
+float ntpTimeZone = 0;  // Changed from int8_t to float to support fractional timezones
 WiFiUDP ntpUDP;
 unsigned long previousNTPsyncMillis = millis();
 uint16_t ntpUpdateInterval = 6; // in hours
@@ -306,7 +306,10 @@ if(var == F("woprUpdateInterval2")) return itoa(woprZones[2].updateInterval, buf
   if(var == F("mqttPostfixZone1"))             return zones[1].mqttPostfix;
   if(var == F("mqttPostfixZone2"))             return zones[2].mqttPostfix;
 //  if(var == "mqttPostfixZone3")             return zones[3].mqttPostfix;
-  if(var == F("ntpTimeZone"))                  return itoa(ntpTimeZone, buffer, 10);
+  if(var == F("ntpTimeZone")) {
+    dtostrf(ntpTimeZone, 1, 2, buffer);  // Convert float to string with 2 decimal places
+    return String(buffer);
+  }
   if(var == F("ntpUpdateInterval"))            return itoa(ntpUpdateInterval, buffer, 10);
   if(var == F("ntpServer"))                    return ntpServer;
   if(var == F("clockDisplayFormatZone0"))      return zones[0].clockDisplayFormat;
@@ -650,7 +653,7 @@ void saveVarsToConfFile(String groupName, uint8_t n) {
   }
 
   if (groupName == "wallClockSett") {
-    preferences.putChar("ntpTimeZone",         ntpTimeZone);
+    preferences.putFloat("ntpTimeZone",         ntpTimeZone);  // Changed from putChar to putFloat
     preferences.putBool("disableDotBlink",    disableDotsBlink);
     preferences.putUShort("ntpUpdateInt", ntpUpdateInterval);
     preferences.putString("ntpServer",         ntpServer);
@@ -731,7 +734,7 @@ void readConfig(String groupName, uint8_t n) {
   }
 
   if (groupName == "wallClockSett") {
-    ntpTimeZone       = preferences.getChar("ntpTimeZone",         ntpTimeZone);
+    ntpTimeZone       = preferences.getFloat("ntpTimeZone",         ntpTimeZone);  // Changed from getChar to getFloat
     disableDotsBlink  = preferences.getBool("disableDotBlink",    disableDotsBlink);
     ntpUpdateInterval = preferences.getUShort("ntpUpdateInt", ntpUpdateInterval);
     ntpServer         = preferences.getString("ntpServer",         ntpServer);
@@ -1453,8 +1456,8 @@ void setup() {
 
           if (key->value() == "wallClockSett") {
             if (p->name() == "ntpTimeZone") {
-              ntpTimeZone = p->value().toInt();
-              timeClient.setTimeOffset(ntpTimeZone * 3600);
+              ntpTimeZone = p->value().toFloat();  // Changed from toInt() to toFloat()
+              timeClient.setTimeOffset((int)(ntpTimeZone * 3600));  // Cast to int for setTimeOffset
             }
             if (p->name() == "disableDotsBlink") {
               if (strcmp(p->value().c_str(),"true") == 0)   disableDotsBlink = true;
@@ -1601,7 +1604,7 @@ void loop() {
   // init display animation
   if (!allTestsFinish) {
     if (nLoop > zoneNumbers && P.getZoneStatus(0)) {
-      delay(5000);
+      delay(1000);
       allTestsFinish      = true;
       initConfig          = true;
     }
