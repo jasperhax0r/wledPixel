@@ -7,7 +7,7 @@ ESP32 or ESP8266 and MAX7219 dot matrix display management
 3. WOPR mode doesnt really have any current settings, only thing that can be configured is what workzone its in and brightness.
 
 ![img](https://github.com/jasperhax0r/wledPixel/blob/main/img/main.jpg)
-![img](https://github.com/jasperhax0r/wledPixel/blob/main/img/wledPixel-white.jpg)
+![img](https://github.com/jasperhax0r/wledPixel/blob/main/3dPrint/10inch.jpg)
 
 ![img](https://github.com/jasperhax0r/wledPixel/blob/main/img/WOPR.jpg)
 
